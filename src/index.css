@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.login {
+  background-image: url("../public/assets/login-background.jpg");
+  background-size: cover;
+}
+
+.card {
+  width: 55%;
+  height: 90%;
+  background: #353535;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  transition: 0.5s ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background: linear-gradient(#d7cfcf, #9198e5);
+}
+
+.card:hover > .img {
+  transition: 2s ease-in-out;
+  background: linear-gradient(#9198e5, #712020);
+}
+
+.textBox {
+  width: calc(100% - 90px);
+  margin-left: 10px;
+  color: white;
+  font-family: 'Poppins' sans-serif;
+}
+
+.textContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.span {
+  font-size: 10px;
+}
+
+.h1 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.p {
+  font-size: 12px;
+  font-weight: lighter;
+}
+

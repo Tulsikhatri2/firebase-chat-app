@@ -29,7 +29,7 @@ const Messages = (message) => {
           <p className="h1 flex justify-between w-[100%]">{message?.message?.name}
             {message?.message?.uid === user?.uid ? <span onClick={()=>setUserOptions(!userOptions)}><SlOptionsVertical /></span> : null}
             {userOptions ? 
-            <div className="w-[10vw] h-[5vh] rounded-lg bg-slate-400 absolute bottom-16 right-2 flex 
+            <div className="w-[10vw] h-[5vh] rounded-lg bg-slate-400 absolute top-10 right-2 flex 
             items-center justify-center shadow-inner shadow-black ">
                 <p className="text-sm font-semibold"
                 onClick={()=>handleDelete()}>Delete</p>

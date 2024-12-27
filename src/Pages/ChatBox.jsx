@@ -64,7 +64,7 @@ const ChatBox = () => {
             </button>
         </div>
         <div className='w-[40%] h-[80%] mt-5 border border-black rounded-3xl p-3 flex flex-col gap-4 '>
-            <div className='w-[100%] h-[85%] overflow-y-auto overflow-x-hidden'>
+            <div className='w-[100%] h-[80%] overflow-y-auto overflow-x-hidden'>
                 {messagesData?.map((item)=>{
                     return(
                         <Messages message={item}/>

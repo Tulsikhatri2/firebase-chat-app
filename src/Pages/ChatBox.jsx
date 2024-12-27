@@ -9,7 +9,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 const ChatBox = () => {
     const [message, setMessage] = useState("");
     const [messagesData, setMessagesData] = useState(null)
-    const [user] = useAuthState(auth);
 
     const signOut = () => {
         auth.signOut();
@@ -41,7 +40,6 @@ const ChatBox = () => {
           return;
         }
         const { uid, displayName, photoURL } = auth.currentUser;
-        console.log(uid,displayName,photoURL,"from chat box")
         await addDoc(collection(db, "messages"), {
           text: message,
           name: displayName,
@@ -52,7 +50,6 @@ const ChatBox = () => {
         setMessage("");
       };
 
-      console.log(messagesData,"messagesData")
 
   return (
     <div className='w-[100vw] h-[100vh] flex flex-col items-center '>

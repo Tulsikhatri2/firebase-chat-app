@@ -34,7 +34,6 @@ code {
 
 .card:hover {
   cursor: pointer;
-  transform: scale(1.05);
 }
 
 .img {
@@ -43,11 +42,6 @@ code {
   margin-left: 10px;
   border-radius: 50%;
   background: linear-gradient(#d7cfcf, #9198e5);
-}
-
-.card:hover > .img {
-  transition: 2s ease-in-out;
-  background: linear-gradient(#9198e5, #712020);
 }
 
 .textBox {

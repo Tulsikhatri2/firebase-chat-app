@@ -5,7 +5,7 @@ import { auth } from "../firebase";
 const Messages = (message) => {
     const [user] = useAuthState(auth);
   return (
-    <div className={`w-[37vw] h-[12vh] ${message?.message?.uid === user?.uid ? "flex items-center justify-end" : ""}`}>
+    <div className={`w-[37vw] h-[12vh] ${message?.message?.uid === user?.uid ? "flex items-center justify-end" : "flex items-center justify-start"}`}>
     <div className={`card`}>
       <div className="img">
         <img src={message?.message?.avatar} style={{borderRadius:"50%"}}/>

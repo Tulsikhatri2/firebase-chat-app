@@ -1,30 +1,28 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import Login from './Pages/Login';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Login from "./Pages/Login";
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import ChatBox from './Pages/ChatBox';
-import { useEffect } from 'react';
+import ChatBox from "./Pages/ChatBox";
+import { useEffect } from "react";
 
 function App() {
-
   const [user] = useAuthState(auth);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(user?.accessToken){
-      navigate("/chat-box")
+  useEffect(() => {
+    if (user?.accessToken) {
+      navigate("/chat-box");
+    } else {
+      navigate("/");
     }
-    else{
-      navigate("/")
-    }
-  },[user])
+  }, [user]);
 
   return (
     <>
-    <Routes>
-      <Route path='/' element={<Login/>}/>
-      <Route path="/chat-box" element={<ChatBox/>}/>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/chat-box" element={<ChatBox />} />
+      </Routes>
     </>
   );
 }

@@ -2,19 +2,9 @@ import React, { useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import { RiChatAiFill } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
-import {
-  addDoc,
-  collection,
-  doc,
-  limit,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
-import Messages from "../Components/Messages";
 import { FaEdit } from "react-icons/fa";
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, updateDoc, limit, doc } from "firebase/firestore";
+import Messages from "../Components/Messages";
 
 const ChatBox = () => {
   const [message, setMessage] = useState("");
@@ -27,28 +17,21 @@ const ChatBox = () => {
   };
 
   useEffect(() => {
-    const q = query(
-      collection(db, "messages"),
-      orderBy("createdAt", "desc"),
-      limit(50)
-    );
+    const q = query(collection(db, "messages"), orderBy("createdAt", "desc"), limit(50));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
       const fetchedMessages = [];
       QuerySnapshot.forEach((doc) => {
         fetchedMessages.push({ ...doc.data(), id: doc.id });
       });
-      const sortedMessages = fetchedMessages.sort(
-        (a, b) => a.createdAt - b.createdAt
-      );
+      const sortedMessages = fetchedMessages.sort((a, b) => a.createdAt - b.createdAt);
       setMessagesData(sortedMessages);
     });
     return () => unsubscribe;
   }, []);
 
-  const handleSendMessage = async (event) => {
-    event.preventDefault();
+  const handleSendMessage = async () => {
     if (message.trim() === "") {
-      alert("Enter valid message");
+      alert("Enter a valid message");
       return;
     }
     const { uid, displayName, photoURL } = auth.currentUser;
@@ -89,48 +72,35 @@ const ChatBox = () => {
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] flex flex-col items-center ">
-      <div className="w-[45%] h-[10%] flex items-center justify-between p-5">
-        <p className="flex">
-          <span className="px-1 text-red-800">
-            <RiChatAiFill size={25} />
-          </span>
-          <span className="font-bold">CHAT-BOX</span>
+    <div className="w-full h-full flex flex-col items-center bg-gray-100 p-4">
+      <div className="w-full sm:w-[45%] h-[10%] flex items-center justify-between p-5">
+        <p className="flex items-center">
+          <RiChatAiFill size={25} className="text-red-800" />
+          <span className="font-bold text-xl ml-2">CHAT-BOX</span>
         </p>
         <button
-          className="text-md px-3 py-2 rounded-3xl shadow-md
-             shadow-black bg-slate-200 text-red-900 font-bold"
+          className="text-md px-4 py-2 rounded-3xl bg-slate-200 text-red-900 font-bold shadow-md"
           onClick={signOut}
         >
           Logout
         </button>
       </div>
-      <div className="w-[40%] h-[80%] mt-5 border border-black rounded-3xl p-3 flex flex-col gap-4 ">
-        <div className="w-[100%] h-[80%] overflow-y-auto overflow-x-hidden">
-          {messagesData?.map((item, index) => {
-            return (
-              <Messages
-                message={item}
-                handleEditData={handleEditData}
-                index={index}
-              />
-            );
-          })}
+      <div className="w-full sm:w-[50%] md:w-[45%] lg:w-[40%] h-[80%] mt-5 border border-black rounded-3xl p-4 flex flex-col gap-4">
+        <div className="w-full h-[80%] overflow-y-auto overflow-x-hidden mb-3 flex flex-col">
+          {messagesData?.map((item, index) => (
+            <Messages key={index} message={item} handleEditData={handleEditData} index={index} />
+          ))}
         </div>
-        <div className="w-[100%] h-[10%] flex items-center justify-between px-3">
+        <div className="w-full h-[10%] flex items-center justify-between px-3">
           <input
-            className="w-[33vw] border border-black py-2 px-3 rounded-3xl cursor-pointer"
-            placeholder="Your Meassage..."
+            className="w-full sm:w-[30vw] md:w-[25vw] border border-black py-2 px-3 rounded-3xl"
+            placeholder="Your Message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            name="message"
           />
           <button
-            className="text-cyan-700 text-3xl"
-            onClick={() => {
-              if (!isEdit) handleSendMessage();
-              else handleUpdate();
-            }}
+            className="text-cyan-700 text-3xl ml-2"
+            onClick={() => (isEdit ? handleUpdate() : handleSendMessage())}
           >
             {!isEdit ? <IoSend /> : <FaEdit />}
           </button>

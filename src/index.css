@@ -19,6 +19,9 @@ code {
 .login {
   background-image: url("../public/assets/login-background.jpg");
   background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
 }
 
 .card {
@@ -29,11 +32,11 @@ code {
   display: flex;
   align-items: center;
   justify-content: left;
-  transition: 0.5s ease-in-out;
 }
 
 .card:hover {
   cursor: pointer;
+  position: relative;
 }
 
 .img {
@@ -48,7 +51,7 @@ code {
   width: calc(100% - 90px);
   margin-left: 10px;
   color: white;
-  font-family: 'Poppins' sans-serif;
+  font-family: sans-serif;
 }
 
 .textContent {
@@ -57,17 +60,97 @@ code {
   justify-content: space-between;
 }
 
-.span {
-  font-size: 10px;
+@media (max-width: 400) {
+  .card {
+    width: 100%; 
+    height: auto; 
+  }
+
+  .img {
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+  }
+
+  .textBox {
+    margin-left: 8px;
+  }
+
+  .textContent {
+    flex-direction: column; 
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 }
 
-.h1 {
-  font-size: 16px;
-  font-weight: bold;
+
+@media (max-width: 640px) {
+  .card {
+    width: 70%; 
+    height: auto; 
+  }
+
+  .img {
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+  }
+
+  .textBox {
+    width: calc(100% - 70px); 
+    margin-left: 8px;
+  }
+
+  .textContent {
+    flex-direction: column; 
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 }
 
-.p {
-  font-size: 12px;
-  font-weight: lighter;
+@media (max-width: 800px) {
+  .card {
+    width: 80%;  
+    height: auto;
+  }
+
+  .img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .textBox {
+    width: calc(100% - 80px); 
+    margin-left: 8px;
+  }
+
+  .textContent {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
+@media (min-width: 1024px) {
+  .card {
+    width: 60%; 
+    height: 90%; 
+  }
+
+  .img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .textBox {
+    width: calc(100% - 90px); 
+    margin-left: 10px;
+  }
+
+  .textContent {
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+  }
+
+}
